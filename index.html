@@ -20,26 +20,62 @@
 </head>
 
 <body>
-  <p>all cursors exfiltrated from <a href="https://everest-pipkin.com/projects/cursor">The Cursor Archive (2017)</a>. <a href="https://github.com/MaxwellBo/cursors">source repo</a>.</p>
+  <p><a href="https://maxbo.me">← back</a></p>
+  <p>all cursors exfiltrated from <a href="https://everest-pipkin.com/projects/cursor">The Cursor Archive (2017)</a>. click to test drive. <a href="https://github.com/MaxwellBo/cursors">source repo</a>.</p>
   <script>
     const TOTAL_IMAGES = 10000;
     const fragment = document.createDocumentFragment();
+
+    function getSearch() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('cursor');
+    }
+
+    function setSearch(i) {
+      const url = new URL(window.location);
+      url.searchParams.set('cursor', i);
+      history.replaceState(null, '', url);
+    }
+
+    function clearSearch() {
+      const url = new URL(window.location);
+      url.searchParams.delete('cursor');
+      history.replaceState(null, '', url);
+    }
+
+    function setCursor(i) {
+      document.body.style.cursor = `url(cursors/c_${i}.png), auto`;
+    }
+
+    function setTitle(i) {
+      document.title = `cursors - cursor ${i} selected`;
+    }
+
+    const cursorParam = getSearch();
+    let i = parseInt(cursorParam, 10);
+
+    if (isNaN(i) || i < 0 || i >= TOTAL_IMAGES) {
+      clearSearch();
+      i = Math.floor(Math.random() * TOTAL_IMAGES); // Default to random cursor
+      setSearch(i);
+    }
+
+    setCursor(i);
+    setTitle(i);
 
     for (let i = 0; i < TOTAL_IMAGES; i++) {
       const img = document.createElement('img');
       img.src = `cursors/c_${i}.png`;
       img.alt = `c_${i}`;
       img.addEventListener('click', () => {
-        document.body.style.cursor = `url(cursors/c_${i}.png), auto`;
+        setCursor(i);
+        setSearch(i);
+        setTitle(i);
       });
       fragment.appendChild(img);
     }
 
     document.body.appendChild(fragment);
-
-    // Set a random image as the initial cursor
-    const randomIndex = Math.floor(Math.random() * TOTAL_IMAGES);
-    document.body.style.cursor = `url(cursors/c_${randomIndex}.png), auto`;
   </script>
 </body>
 
