@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Grid</title>
-    <style>
-        body {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0;
-        }
-        img {
-            width: 48px;
-            height: 48px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cursors</title>
+  <style>
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+    }
+
+    p {
+      display: block;
+    }
+
+    img {
+      image-rendering: optimizeSpeed;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: pixelated;
+      image-rendering: optimize-contrast;
+      -ms-interpolation-mode: nearest-neighbor;
+    }
+  </style>
 </head>
+
 <body>
-    <script>
-        const totalImages = 10000;
-        const fragment = document.createDocumentFragment();
+  <p>All cursors exfiltrated from <a href="https://everest-pipkin.com/projects/cursor">The Cursor Archive (2017)</a></p>
+  <script>
+    const TOTAL_IMAGES = 10000;
+    const fragment = document.createDocumentFragment();
 
-        for (let i = 0; i < totalImages; i++) {
-            const img = document.createElement('img');
-            img.src = `cursors/c_${i}.png`;
-            img.alt = `c_${i}`;
-            img.addEventListener('click', () => {
-                document.body.style.cursor = `url(cursors/c_${i}.png), auto`;
-            });
-            fragment.appendChild(img);
-        }
+    for (let i = 0; i < TOTAL_IMAGES; i++) {
+      const img = document.createElement('img');
+      img.src = `cursors/c_${i}.png`;
+      img.alt = `c_${i}`;
+      img.addEventListener('click', () => {
+        document.body.style.cursor = `url(cursors/c_${i}.png), auto`;
+      });
+      fragment.appendChild(img);
+    }
 
-        document.body.appendChild(fragment);
+    document.body.appendChild(fragment);
 
-        // Set a random image as the initial cursor
-        const randomIndex = Math.floor(Math.random() * totalImages);
-        document.body.style.cursor = `url(cursors/c_${randomIndex}.png), auto`;
-    </script>
+    // Set a random image as the initial cursor
+    const randomIndex = Math.floor(Math.random() * TOTAL_IMAGES);
+    document.body.style.cursor = `url(cursors/c_${randomIndex}.png), auto`;
+  </script>
 </body>
+
 </html>
