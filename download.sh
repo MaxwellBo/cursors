@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 download_file() {
