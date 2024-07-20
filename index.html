@@ -21,10 +21,17 @@
 
 <body>
   <p><a href="https://maxbo.me">← back</a></p>
+  <button onclick="openCurrentCursor()">open current cursor</button>
   <p>all cursors exfiltrated from <a href="https://everest-pipkin.com/projects/cursor">The Cursor Archive (2017)</a>. cursors may be inappropriate. click to test drive. <a href="https://github.com/MaxwellBo/cursors">source repo</a>. check out the <a href="http://wrasse.pw/joel/icons/">icon zone</a> too. c. 2024.</p>
   <script>
     const TOTAL_IMAGES = 10000;
     const fragment = document.createDocumentFragment();
+
+    function openCurrentCursor() {
+      const cursorParam = getSearch();
+      const url = `cursors/c_${cursorParam}.png`;
+      window.open(url, '_blank');
+    }
 
     function getSearch() {
       const urlParams = new URLSearchParams(window.location.search);
