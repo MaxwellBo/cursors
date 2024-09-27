@@ -74,6 +74,7 @@
       const img = document.createElement('img');
       img.src = `cursors/c_${i}.png`;
       img.alt = `c_${i}`;
+      img.loading = 'lazy';
       img.addEventListener('click', () => {
         setCursor(i);
         setSearch(i);
